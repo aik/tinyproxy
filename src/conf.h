@@ -49,6 +49,7 @@ struct config_s {
         char *user;
         char *group;
         sblist *listen_addrs;
+        sblist *listen_ifs;
 #ifdef FILTER_ENABLE
         char *filter;
         unsigned int filter_opts; /* enum filter_options */

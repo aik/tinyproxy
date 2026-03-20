@@ -76,6 +76,10 @@ bind_socket (int sockfd, const char *addr, int family)
         assert (addr != NULL && strlen (addr) != 0);
 
 #ifdef SO_BINDTODEVICE
+        if (addr && strcmp(addr, "tun0") == 0 && !if_nametoindex(addr))
+                log_message (LOG_ERR,
+                        "bind_socket: '%s' is not an if", addr);
+
         if (addr && if_nametoindex(addr)) {
 		struct ifreq interface = {};
 
